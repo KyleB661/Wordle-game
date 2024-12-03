@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: lightblue;    
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.keyboard {
+    display: grid;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.row1, .row2, .row3, .row4, .row5, .row6 {
+    display: flex;
+    gap: 5px;
+}
+
+.box {
+    width: 60px;
+    height: 60px;
+    border: solid black 2px;
+    gap: 10px;
+
+}
+
+/* look into grids if time. surely there is an easier option than the above? */
