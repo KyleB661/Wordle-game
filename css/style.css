@@ -21,7 +21,7 @@ body {
     flex-direction: column;
 }
 
-.row1, .row2, .row3, .row4, .row5, .row6 {
+.row0, .row1, .row2, .row3, .row4, .row5 {
     display: flex;
     gap: 5px;
 }
@@ -31,7 +31,8 @@ body {
     height: 60px;
     border: solid black 2px;
     gap: 10px;
-
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-/* look into grids if time. surely there is an easier option than the above? */

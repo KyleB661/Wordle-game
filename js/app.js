@@ -1,29 +1,23 @@
 // ***********Variables************
 let currentRow = 0;
 let currentGuess = [];
+let currentAnswer;
 
 //***********Cached elements****************
 
-const rows = document.querySelectorAll(`.row${currentRow +1}`);
-console.log(`.row${currentRow.toString()}`);
-
+let rows = document.querySelectorAll(`.row${currentRow}`);
 const keys = document.querySelectorAll(".key");
 
 
 // **********Functions************
 const getAnswer = (answers) => {
     const answerIndex = Math.floor(Math.random() * answers.length);
-    const answer = answers[answerIndex];
-    return answer;
+    currentAnswer = answers[answerIndex];
+    return currentAnswer;
 }
 
 const handleClick = (letter) => {
-    console.log(letter);
-    console.log(currentGuess.length);
-    console.log(currentGuess);
-    
-      
-    if  (letter === "Enter") {
+       if  (letter === "Enter") {
         submit();
     } else if (letter === "Backspace") {
         backspace();
@@ -33,16 +27,104 @@ const handleClick = (letter) => {
 }
 }
 
+const checkGuess = (guess) => {
+    const boxes = rows[0].querySelectorAll(".box");
+    const answerCopy = [...currentAnswer];  
+
+    let correctGuess = true;
+
+// Green squares
+for (let i = 0; i < guess.length; i++) {
+    if (guess[i] === currentAnswer[i]) {
+        boxes[i].style.backgroundColor = "green";
+        answerCopy[i] = null; 
+    } else {
+        correctGuess = false;
+    }
+    };
+
+// Yellow squares
+for (let i = 0; i < guess.length; i++) {
+    if (guess[i] !== currentAnswer[i] && answerCopy.includes(guess[i])) {
+        boxes[i].style.backgroundColor = "yellow";
+        answerCopy[answerCopy.indexOf(guess[i])] = null; 
+    }
+}
+// Grey/incorrect squares
+for (let i = 0; i < guess.length; i++) {
+    if (boxes[i].style.backgroundColor !== "green" && boxes[i].style.backgroundColor !== "yellow") {
+        boxes[i].style.backgroundColor = "gray";
+    }
+}
+
+for (let i = 0; i < guess.length; i++) {
+    boxes[i].textContent = guess[i];
+}
+
+// if win
+if (correctGuess) {
+    document.getElementById("winMessage").style.display = "block"; 
+    return; 
+}
+
+// if lose
+if (correctGuess) {
+    document.getElementById("winMessage").style.display = "block";
+    return;
+}
+}
 const backspace = () => { 
     currentGuess.pop();
     updateBoard();
 }
 
 const submit = () => {
-} 
+    const guess = currentGuess.join("").toLowerCase();
+    const validWord = isValidWord(guess);
+    errorMessage(validWord);
 
-const updateBoard = () => {    
-    const currentRowElement = rows[currentRow];
+//     if (!isValidWord(guess)) {
+//         document.getElementById("errorMessage").style.display = "block";
+//         return; 
+//      } else {
+// document.getElementById("errorMessage").style.display = "none";
+//      return;
+//     }
+     
+    checkGuess(guess);
+
+    currentGuess = [];
+    currentRow++;
+    rows = document.querySelectorAll(`.row${currentRow}`);
+
+    if(currentRow >=6) {
+        document.getElementById("loseMessage").style.display = "block";
+        document.getElementById("correctWord").textContent = currentAnswer; 
+    } else {
+        updateBoard();
+    }
+}
+
+const errorMessage = (validWord) => {
+    if (isValidWord) {
+        document.getElementById("errorMessage").style.display = "block";
+            return; 
+    } else {
+        document.getElementById("errorMessage").style.display = "none";
+     return;
+    }
+}
+
+const isValidWord = (word) => {
+    console.log(word);
+    const isWord = answers.includes(word)
+    console.log(isWord);
+    
+    return answers.includes(word);
+}
+
+const updateBoard = () => { 
+    const currentRowElement = rows[0];
     const boxes = currentRowElement.querySelectorAll(".box");
     currentGuess.forEach((letter, i) => {
         boxes[i].textContent = letter;
@@ -67,17 +149,3 @@ init();
 keys.forEach(key => {
     key.addEventListener("click", () => handleClick(key.textContent));
 });
-
-
-
-
-
-// To do:
-//sort answer list? why wont it link with answers.js???? - using small portion within answers array for now
-// updateBoard function - ?????
-// Make keys functional and correspond with the letter clicked - Eventlistener - handleClick?
-// row/guess functionality. would this have to be 2 seperate functions? i.e a counter that hits > row 6 === you lose?
-//backspace function for the del
-//sumbit function for Enter 
-
-
