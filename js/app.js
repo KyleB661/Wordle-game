@@ -81,12 +81,18 @@ const backspace = () => {
 const submit = () => {
     const guess = currentGuess.join("").toLowerCase();
     const validWord = isValidWord(guess);
-    
     errorMessage(validWord);
-     
-    checkGuess(guess);
-
-    nextRow();
+    if (validWord) {
+        checkGuess(guess);
+        nextRow();
+    } else {
+        backspace()
+        backspace()
+        backspace()
+        backspace()
+        backspace()
+    }
+    
 }
 
 const nextRow = () => {
