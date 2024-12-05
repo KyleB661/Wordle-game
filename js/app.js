@@ -81,18 +81,15 @@ const backspace = () => {
 const submit = () => {
     const guess = currentGuess.join("").toLowerCase();
     const validWord = isValidWord(guess);
+    
     errorMessage(validWord);
-
-//     if (!isValidWord(guess)) {
-//         document.getElementById("errorMessage").style.display = "block";
-//         return; 
-//      } else {
-// document.getElementById("errorMessage").style.display = "none";
-//      return;
-//     }
      
     checkGuess(guess);
 
+    nextRow();
+}
+
+const nextRow = () => {
     currentGuess = [];
     currentRow++;
     rows = document.querySelectorAll(`.row${currentRow}`);
@@ -106,11 +103,15 @@ const submit = () => {
 }
 
 const errorMessage = (validWord) => {
-    if (isValidWord) {
-        document.getElementById("errorMessage").style.display = "block";
+    console.log(validWord);
+    
+    if (validWord) {
+        console.log("codeIsReaching Here");
+        
+        document.getElementById("errorMessage").style.display = "none";
             return; 
     } else {
-        document.getElementById("errorMessage").style.display = "none";
+        document.getElementById("errorMessage").style.display = "block";
      return;
     }
 }
