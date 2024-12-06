@@ -5,7 +5,7 @@
 
 My Wordle game:  A Very basic Wordle game. I chose this because my wife plays this every day!
 - https://kyleb661.github.io/Wordle-game/
-- 
+
 Attributions: 
 - Worlde answer list - https://gist.githubusercontent.com/slushman/34e60d6bc479ac8fc698df8c226e4264/raw/cf702f098856c72a81d79f69b11f0a8c333e7d2f/wordle-list 
 
