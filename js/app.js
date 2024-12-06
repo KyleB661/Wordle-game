@@ -109,11 +109,7 @@ const nextRow = () => {
 }
 
 const errorMessage = (validWord) => {
-    console.log(validWord);
-    
-    if (validWord) {
-        console.log("codeIsReaching Here");
-        
+    if (validWord) {   
         document.getElementById("errorMessage").style.display = "none";
             return; 
     } else {
@@ -123,10 +119,7 @@ const errorMessage = (validWord) => {
 }
 
 const isValidWord = (word) => {
-    console.log(word);
-    const isWord = answers.includes(word)
-    console.log(isWord);
-    
+    const isWord = answers.includes(word)   
     return answers.includes(word);
 }
 
@@ -147,7 +140,6 @@ const updateBoard = () => {
 
 const init = () => {
     const answer = getAnswer(answers);
-    console.log(`Random answer: ${answer}`);
 }
 
 init();

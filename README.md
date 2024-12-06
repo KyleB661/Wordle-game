@@ -10,12 +10,15 @@ Getting started: Include a link to your deployed game and any instructions you d
 
 
 
-Attributions: This section should include links to any external resources (such as libraries or assets) you used to develop your application that require attribution. You can exclude this section if it does not apply to your application.
+Attributions: 
+Worlde answer list - https://gist.githubusercontent.com/slushman/34e60d6bc479ac8fc698df8c226e4264/raw/cf702f098856c72a81d79f69b11f0a8c333e7d2f/wordle-list 
 
-
-
-
-Technologies used: JavaScript, HTML, CSS.
-
+Technologies used: 
+JavaScript, HTML, CSS.
 
 Next steps: Planned future enhancements (stretch goals).
+Create push key functionality
+Animate tiles so they flip once enter is clicked
+Improve styling
+Official answer list seems to have a lot of words missing
+Grey out previously used letters on keyboard
